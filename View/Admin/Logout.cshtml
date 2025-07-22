@@ -1,0 +1,63 @@
+@{
+    //Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Logout";
+}
+
+<div class="main">
+    <h2>You have logged out successfully</h2>
+    <p>Thank you for using our admin panel.</p>
+
+    <!-- Button to redirect back to Dashboard -->
+    <a href="@Url.Action("Index", "Admin")" class="btn btn-primary">Go to Dashboard</a>
+</div>
+
+<style>
+    /* General layout */
+    /* General layout */
+body { background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20210828/pngtree-girly-lifestyle-pink-background-cute-illustration-image_770976.jpg'); /* Add your image URL here */ background-size: cover; /* Ensure the background image covers the entire screen */ background-position: center; background-repeat: no-repeat; margin: 0; padding: 0; height: 100vh; .main {
+       
+        background-color: #f9f9f9; /* Light pastel background */
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        max-width: 500px;
+        margin: 50px auto;
+        text-align: center;
+    }
+
+    h2 {
+        font-family: 'Arial', sans-serif;
+        color: #6d4c41; /* Warm pastel brown */
+        font-size: 28px;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-family: 'Arial', sans-serif;
+        color: #7f8c8d; /* Soft pastel gray */
+        font-size: 16px;
+        margin-bottom: 30px;
+    }
+
+    .btn {
+        font-family: 'Arial', sans-serif;
+        background-color: #ffb6b9; /* Pastel pink */
+        color: #fff;
+        padding: 10px 20px;
+        border-radius: 25px;
+        text-decoration: none;
+        display: inline-block;
+        transition: background-color 0.3s ease;
+        font-size: 16px;
+        text-transform: uppercase;
+    }
+
+        .btn:hover {
+            background-color: #ff6f61; /* Slightly darker pastel pink */
+        }
+
+        .btn:focus, .btn:active {
+            outline: none;
+            box-shadow: none;
+        }
+</style>

@@ -1,0 +1,214 @@
+@{
+    ViewData["Title"] = "Your Cart";
+}
+
+<h1 style="text-align: center; color: #ff7bbf; font-family: 'Segoe UI', sans-serif; font-size: 3em; margin-bottom: 40px;">Your Cart</h1>
+
+<div class="container">
+    <div class="cart-items">
+        <script>
+            // Retrieve the cart from localStorage
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            // If cart is empty
+            if (cart.length === 0) {
+                document.querySelector('.cart-items').innerHTML = '<p class="empty-cart-message">Your cart is empty.</p>';
+            } else {
+                var total = 0;
+                // Loop through the cart and display each item
+                cart.forEach(function (product, index) {
+                    var productHTML = `
+                                        <div class="cart-item" id="item-${index}">
+                                            <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
+                                            <div class="product-details">
+                                                <p class="product-name">${product.name}</p>
+                                                <p class="product-price">${product.price}</p>
+                                            </div>
+                                            <div class="quantity-control">
+                                                <button class="btn-quantity" onclick="decreaseQuantity(${index})">-</button>
+                                                <span class="quantity">${product.quantity || 1}</span>
+                                                <button class="btn-quantity" onclick="increaseQuantity(${index})">+</button>
+                                            </div>
+                                            <button class="btn-remove" onclick="removeFromCart(${index})">Remove</button>
+                                        </div>
+                                    `;
+                    document.querySelector('.cart-items').innerHTML += productHTML;
+
+                    // Calculate the total price (considering quantity)
+                    total += parseInt(product.price.replace(/[^\d]/g, '')) * (product.quantity || 1);
+                });
+
+                // Display total
+                var totalHTML = `
+                                    <div class="cart-total">
+                                        <p><strong>Total: ₹${total}</strong></p>
+                                    </div>
+                                `;
+                document.querySelector('.cart-items').innerHTML += totalHTML;
+            }
+
+            // Function to increase quantity
+            function increaseQuantity(index) {
+                var cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cart[index].quantity = (cart[index].quantity || 1) + 1;  // Increase quantity
+                localStorage.setItem("cart", JSON.stringify(cart)); // Update cart in localStorage
+                window.location.reload(); // Reload the page to reflect changes
+            }
+
+            // Function to decrease quantity
+            function decreaseQuantity(index) {
+                var cart = JSON.parse(localStorage.getItem("cart")) || [];
+                if (cart[index].quantity > 1) {
+                    cart[index].quantity--;  // Decrease quantity if greater than 1
+                    localStorage.setItem("cart", JSON.stringify(cart)); // Update cart in localStorage
+                    window.location.reload(); // Reload the page to reflect changes
+                }
+            }
+
+            // Function to remove product from cart
+            function removeFromCart(index) {
+                var cart = JSON.parse(localStorage.getItem("cart")) || [];
+                cart.splice(index, 1); // Remove product at given index
+                localStorage.setItem("cart", JSON.stringify(cart)); // Update cart in localStorage
+                window.location.reload(); // Reload the page to show updated cart
+            }
+        </script>
+    </div>
+
+    <div class="checkout">
+        <a href="/Home/Transaction" class="btn btn-pink">Proceed to Checkout</a>
+    </div>
+</div>
+
+<style>
+    /* General Styling */
+body { background-image: url('https://static.vecteezy.com/system/resources/previews/022/127/182/large_2x/elegant-background-with-a-lace-white-pattern-on-pink-satin-delicate-background-texture-photo.jpg'); background-size: cover; background-position: center; background-attachment: fixed; font-family: 'Segoe UI', sans-serif; color: #333; padding: 40px; text-align: center; }
+
+    h1 {
+        color: #ff7bbf;
+        font-weight: bold;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+    }
+
+    .cart-items {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+
+    .cart-item {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s;
+    }
+
+        .cart-item:hover {
+            transform: translateY(-5px);
+        }
+
+    .product-image {
+        width: 80px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+    }
+
+    .product-details {
+        flex: 1;
+        margin-left: 20px;
+        text-align: left;
+    }
+
+    .product-name {
+        font-weight: bold;
+        color: #333;
+    }
+
+    .product-price {
+        color: #ff7bbf;
+    }
+
+    .quantity-control {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .btn-quantity {
+        background-color: #ff7bbf;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 1em;
+        transition: background-color 0.3s;
+    }
+
+        .btn-quantity:hover {
+            background-color: #e54b8b;
+        }
+
+    .quantity {
+        font-size: 1.2em;
+    }
+
+    .btn-remove {
+        background-color: #ff7bbf;
+        color: white;
+        padding: 8px 16px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+        font-size: 0.9em;
+        transition: background-color 0.3s;
+        margin-left: 20px;
+    }
+
+        .btn-remove:hover {
+            background-color: #e54b8b;
+        }
+
+    .cart-total {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+
+    .checkout {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .btn-pink {
+        background-color: #ff7bbf;
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        .btn-pink:hover {
+            background-color: #e54b8b;
+        }
+
+    /* Empty cart message styling */
+    .empty-cart-message {
+        font-size: 1.5em;
+        color: #AA336A;
+        background-color: #FFB6C1;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        margin: 0 auto;
+        display: inline-block;
+    }
+</style>

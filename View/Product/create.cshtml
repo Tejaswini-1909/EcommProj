@@ -1,0 +1,330 @@
+@{
+    Layout = "~/Views/Shared/_ProductLayout.cshtml";
+    ViewData["Title"] = "Product Inventory";
+}
+
+<h2 class="text-center mb-4">Product Inventory</h2>
+
+<!-- Button to trigger modal for adding new product -->
+<div class="text-right mb-3">
+    <button class="btn btn-pink" data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Product</button>
+</div>
+
+<table class="table table-bordered table-hover table-pink">
+    <thead class="table-dark">
+        <tr>
+            <th>Product ID</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Stock</th>
+            <th>Quantity</th>
+            <th>Price (₹)</th>
+            <th class="dashboard-column">
+                <!-- Added this class to style dashboard column -->
+                <!-- Dashboard Button (Side of Price) -->
+                <a href="@Url.Action("Index", "Admin")" class="btn btn-pink mb-2 dashboard-btn">
+                    <i class="bi bi-house-door"></i> Go to Dashboard
+                </a>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>P001</td>
+            <td>Rose Lipstick</td>
+            <td>Luxury Makeup</td>
+            <td>In Stock</td>
+            <td>50</td>
+            <td>999</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P001" data-product-name="Rose Lipstick">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P002</td>
+            <td>Rose Face Mist</td>
+            <td>Skincare</td>
+            <td>In Stock</td>
+            <td>30</td>
+            <td>1299</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P002" data-product-name="Rose Face Mist">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P003</td>
+            <td>Body Lotion</td>
+            <td>Skincare</td>
+            <td>Low Stock</td>
+            <td>10</td>
+            <td>899</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P003" data-product-name="Body Lotion">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P004</td>
+            <td>Scarlet Gown</td>
+            <td>Trendy Fashion</td>
+            <td>Low Stock</td>
+            <td>6</td>
+            <td>17,899</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P004" data-product-name="Scarlet Gown">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P005</td>
+            <td>Diamond Watch</td>
+            <td>Elegant Watches</td>
+            <td>In Stock</td>
+            <td>1000</td>
+            <td>50,000</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P005" data-product-name="Diamond Watch">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P006</td>
+            <td>Jade Roller</td>
+            <td>Skincare</td>
+            <td>In Stock</td>
+            <td>2066</td>
+            <td>1,499</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P006" data-product-name="Jade Roller">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P007</td>
+            <td>Denim Shorts</td>
+            <td>Trendy Fashion</td>
+            <td>Low Stock</td>
+            <td>12</td>
+            <td>1,999</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P007" data-product-name="Denim Shorts">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P008</td>
+            <td>Masuchessets Pumpkin Dress</td>
+            <td>Trendy Fashion</td>
+            <td>In Stock</td>
+            <td>2000</td>
+            <td>14,599</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P008" data-product-name="Masuchessets Pumpkin Dress">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P009</td>
+            <td>Platinum Watch</td>
+            <td>Elegant Watches</td>
+            <td>Out of Stock</td>
+            <td>0</td>
+            <td>1,00,000</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P009" data-product-name="Platinum Watch">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P010</td>
+            <td>Berry Lush Blush</td>
+            <td>Luxury Makeup</td>
+            <td>Low Stock</td>
+            <td>14</td>
+            <td>1,299</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P010" data-product-name="Berry Lush Blush">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P011</td>
+            <td>Smudge Proof Mascara</td>
+            <td>Luxury Makeup</td>
+            <td>In Stock</td>
+            <td>100</td>
+            <td>899</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P011" data-product-name="Smudge Proof Mascara">Remove</button>
+            </td>
+        </tr>
+        <tr>
+            <td>P012</td>
+            <td>Flare Fit Jean</td>
+            <td>Trendy Fashion</td>
+            <td>Low Stock</td>
+            <td>10</td>
+            <td>3,456</td>
+            <td>
+                <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#removeProductModal" data-product-id="P012" data-product-name="Flare Fit Jean">Remove</button>
+            </td>
+          
+
+        </tr>
+    </tbody>
+</table>
+
+<!-- Modal for adding a new product -->
+<div class="modal fade" id="addProductModal" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addProductModalLabel">Add New Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Form to add product -->
+                <form>
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product ID</label>
+                        <input type="text" class="form-control" id="productID" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="productName" class="form-label">Product Name</label>
+                        <input type="text" class="form-control" id="productName" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="category" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="quantity" class="form-label">Quantity</label>
+                        <input type="number" class="form-control" id="quantity" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="price" class="form-label">Price (₹)</label>
+                        <input type="number" class="form-control" id="price" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="stock" class="form-label">Stock</label>
+                        <select class="form-select" id="stock" required>
+                            <option value="In Stock">In Stock</option>
+                            <option value="Out of Stock">Out of Stock</option>
+                            <option value="Low Stock">Low Stock</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-pink">Add Product</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal for removing a product -->
+<div class="modal fade" id="removeProductModal" tabindex="-1" aria-labelledby="removeProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="removeProductModalLabel">Remove Product</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Are you sure you want to remove the product <strong id="removeProductName"></strong> (ID: <span id="removeProductId"></span>)?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-danger" id="confirmRemoveProduct">Remove</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Bootstrap JS and CSS (Make sure you have these linked in your layout file) -->
+<!-- Custom CSS for pastel pink theme and hover effect -->
+<style>
+    /* Background Image */
+    body {
+        background-image: url('https://img.freepik.com/free-vector/french-cafe-background-women-rsquo-s-lifestyle-illustration-vector_53876-156596.jpg?semt=ais_hybrid&w=740'); /* Replace with your image URL */
+        background-size: cover;
+        background-position: center center;
+        background-attachment: fixed;
+        color: #6c4f72; /* Deep purple text color */
+    }
+    /* Pastel Pink Theme */
+    .table-pink {
+        background-color: #ffefef; /* Light pastel pink */
+        color: #6c4f72; /* Deep purple for text */
+    }
+
+        .table-pink th {
+            background-color: #f8b3c1; /* Soft pastel pink for headers */
+            color: white;
+        }
+
+        .table-pink tbody tr:hover {
+            background-color: #f1b7d3; /* Light pink hover effect */
+        }
+
+    .btn-pink {
+        background-color: #f5a6c5;
+        border-color: #f5a6c5;
+        color: #fff;
+    }
+
+        .btn-pink:hover {
+            background-color: #f1b7d3;
+            border-color: #f1b7d3;
+        }
+
+    .btn-danger {
+        background-color: #e74c3c;
+        border-color: #c0392b;
+    }
+
+        .btn-danger:hover {
+            background-color: #c0392b;
+            border-color: #e74c3c;
+        }
+
+    /* For input and select fields in the form */
+    input.form-control, select.form-select {
+        background-color: #fce2f0;
+        border: 1px solid #f5a6c5;
+        /* For input and select fields in the form */
+        input .form-control, select.form-select
+
+    {
+        background-color: #fce2f0; /* Light pastel pink */
+        border: 1px solid #f5a6c5;
+    }
+    /* Styling for Dashboard column to match Price column */
+    .dashboard-column {
+        background-color: #f8b3c1; /* Same color as Price column header */
+        text-align: center;
+    }
+
+    .dashboard-btn {
+        background-color: #f8b3c1;
+        color: #6c4f72;
+    }
+
+        .dashboard-btn:hover {
+            background-color: #f1b7d3;
+            color: #6c4f72;
+        }
+</style>
+
+<script>
+    // Set up event listener for remove buttons
+    const removeButtons = document.querySelectorAll('button[data-bs-toggle="modal"][data-bs-target="#removeProductModal"]');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', function () {
+            const productId = this.getAttribute('data-product-id');
+            const productName = this.getAttribute('data-product-name');
+
+            // Set product info in modal
+            document.getElementById('removeProductId').textContent = productId;
+            document.getElementById('removeProductName').textContent = productName;
+        });
+    });
+
+    // Handle removal of product (simulating here)
+    document.getElementById('confirmRemoveProduct').addEventListener('click', function () {
+        const productId = document.getElementById('removeProductId').textContent;
+        alert(`Product ${productId} has been removed!`);
+        // You can replace the alert with actual logic to remove the product from the list.
+        $('#removeProductModal').modal('hide');
+    });
+</script>

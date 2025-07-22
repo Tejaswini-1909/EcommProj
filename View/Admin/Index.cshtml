@@ -1,0 +1,266 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Dashboard";
+}
+
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+    }
+
+    .sidebar {
+        height: 100vh;
+        width: 250px;
+        background-color: #FB6F92;
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding-top: 20px;
+        color: white;
+    }
+
+        .sidebar a {
+            display: block;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+        }
+
+            .sidebar a:hover {
+                background-color: #F8E0E6;
+            }
+
+    .main {
+        margin-left: 250px;
+        padding: 20px;
+        background-color: #FFBCD9;
+        min-height: 100vh;
+        background-image: url('https://img.freepik.com/free-vector/soft-pastel-background-with-flowers_79603-1074.jpg');
+        background-size: cover; /* ensures it covers the whole area */
+        background-repeat: no-repeat; /* prevents repeating */
+        background-position: center; /* centers the image */
+        background-attachment: fixed; /* optional: keeps image fixed on scroll */
+        background-color: rgba(255, 188, 217, 0.85);
+    }
+    /* Custom Buttons */
+    .btn-edit, .btn-delete {
+        border: none;
+        padding: 6px 12px;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+        margin-right: 5px;
+    }
+
+    .btn-edit {
+        background-color: #A3C4F3;
+        color: #333;
+    }
+
+        .btn-edit:hover {
+            background-color: #7EA4E8;
+            color: white;
+        }
+
+    .btn-delete {
+        background-color: #F7A8A8; /* Soft Coral */
+        color: #333;
+    }
+
+        .btn-delete:hover {
+            background-color: #EF5D5D;
+            color: white;
+        }
+
+
+
+    .card h5 {
+        margin-bottom: 0;
+    }
+    /* About & Contact Themed Styles */
+    #aboutSection, #contactSection {
+        background-color: #FFFFF0;
+        padding: 20px;
+        margin-top: 30px;
+        border-radius: 6px;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+        border-left: none;
+    }
+
+        #aboutSection h4, #contactSection h4 {
+            font-size: 1.6rem;
+            color: #333;
+        }
+    /* === Custom Pastel Cards === */
+    .pastel-card {
+        color: #333;
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: transform 0.2s ease;
+    }
+
+        .pastel-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .pastel-card.pink {
+            background-color: #F8C8DC;
+        }
+
+        .pastel-card.mint {
+            background-color: #C4F0C5;
+        }
+
+        .pastel-card.lavender {
+            background-color: #E3D0FF;
+        }
+
+        .pastel-card.ivory {
+            background-color: #FFFFF0;
+        }
+
+    /* Table Styling */
+    .table {
+        background-color: #FFF7FB;
+    }
+
+    .table-dark {
+        background-color: #D291BC;
+        color: #fff;
+    }
+
+    .table tbody tr:hover {
+        background-color: #F3D9E2;
+    }
+
+    .table tbody tr.low-stock {
+        background-color: #FFD6DA;
+    }
+
+    .table-bordered th,
+    .table-bordered td {
+        border: 1px solid #f3c6db;
+    }
+
+    .table td, .table th {
+        padding: 15px;
+    }
+</style>
+
+<!-- Sidebar Navigation -->
+<div class="sidebar bg-pink p-3">
+    <ul class="nav flex-column">
+        <li class="nav-item">
+            <a class="nav-link text-white">Dashboard</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Product" asp-action="create">Products</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="UserInfo">UserInfo</a>
+        </li>
+        <!-- In your Index.cshtml file -->
+        <a class="nav-link text-white" asp-controller="Admin" asp-action="PrivacySetting">PrivacySettings</a>
+
+        <li class="nav-item">
+            <a class="nav-link text-white" asp-controller="Admin" asp-action="Logout">Logout</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#" onclick="showSection('aboutSection')">About</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-white" href="#" onclick="showSection('contactSection')">Contact</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="main">
+    <h2>Dashboard</h2>
+    <div class="row">
+        <div class="col-md-3 mb-3">
+            <div class="card pastel-card pink">
+                <div class="card-body">
+                    <h5>Products</h5>
+                    <p class="fs-4">120</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card pastel-card mint">
+                <div class="card-body">
+                    <h5>Categories</h5>
+                    <p class="fs-4">4</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card pastel-card lavender">
+                <div class="card-body">
+                    <h5>Users</h5>
+                    <p class="fs-4">350</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 mb-3">
+            <div class="card pastel-card ivory">
+                <div class="card-body">
+                    <h5>Low Stock</h5>
+                    <p class="fs-4">7</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  
+    </div>
+
+
+
+<!-- About Section with Larger Font -->
+<div id="aboutSection" class="mt-5 fs-5" style="display: none;">
+    <h4 class="fs-3">About Reva</h4>
+    <p>
+        <strong>Reva</strong> is a premium lifestyle and wellness brand committed to delivering the finest quality in fashion, skincare, and beauty. Known for its attention to detail and customer-first philosophy, Reva offers a carefully curated selection of <strong>branded, high-quality clothes, makeup, skincare products, and watches</strong> designed to elevate your daily routine and personal style.
+    </p>
+    <p>
+        With a growing reputation for excellence and elegance, Reva is trusted by customers who value authenticity, luxury, and sustainability. From trendsetting apparel to luxurious beauty and wellness essentials, every Reva product reflects the brand's commitment to innovation, quality, and conscious living.
+    </p>
+    <p>
+        The Reva Admin Panel empowers internal teams to seamlessly manage <strong>inventory, users, stock levels, and real-time product data</strong>, ensuring that operations run smoothly and efficiently.
+    </p>
+</div>
+
+
+<!-- Contact Section with Larger Font -->
+<div id="contactSection" class="mt-4 fs-5" style="display: none;">
+    <h4 class="fs-3">Contact</h4>
+    <p>
+        📧 Email: <a href="mailto:support@reva.com">support@revabrand.com</a><br />
+        📞 Phone: +91 98765 43210<br />
+        📍 Address:REVA Fashion House, MG Road, Bengaluru
+    </p>
+    <p>Available: Mon–Fri, 10 AM to 6 PM</p>
+
+</div>
+
+
+
+<script>
+    function showSection(sectionId) {
+        // Hide both sections first
+        document.getElementById('aboutSection').style.display = 'none';
+        document.getElementById('contactSection').style.display = 'none';
+
+        // Show the selected section
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.style.display = 'block';
+            section.scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>

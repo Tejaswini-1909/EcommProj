@@ -1,0 +1,114 @@
+@model EcommProj.Models.REVAVM
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: url('https://cdn.prod.website-files.com/6703df23a4ef54cfd6db0d23/679662aad96dc85d8bd55958_679661a49020ff1b34ab3ec5_%2523FendiPeekaboo%2520Soft%2520Small%2520bag.jpeg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .signup-circle {
+            width: 450px;
+            min-height: 450px;
+            background-color: #e0f7fa;
+            border-radius: 50%;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.3);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+            text-align: center;
+            margin: 0 350px 0 350px;
+        }
+
+            .signup-circle h4 {
+                color: #0077b6;
+                font-weight: bold;
+                margin-bottom: 10px;
+            }
+
+        .form-control {
+            border-radius: 20px;
+            border: 1px solid #90e0ef;
+            margin-bottom: 15px;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .btn-custom {
+            background-color: #00b4d8;
+            border: none;
+            color: white;
+            font-weight: 500;
+            border-radius: 20px;
+            width: 100%;
+            padding: 10px;
+        }
+
+            .btn-custom:hover {
+                background-color: #0077b6;
+            }
+
+        .login-link {
+            margin-top: 10px;
+        }
+
+            .login-link a {
+                color: #0077b6;
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+                .login-link a:hover {
+                    text-decoration: underline;
+                }
+
+        .signup-form {
+            width: 100%;
+            max-width: 280px;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-circle">
+        <h4>Create Your <span style="color:#ff66b2;">Reva</span> Account</h4>
+        <p class="text-muted" style="font-style:italic;margin-bottom:20px;">Style Your Way</p>
+
+        <form class="signup-form" asp-controller="REVAVM" asp-action="Signup">
+            <input type="text" class="form-control" placeholder="Full Name" required />
+            <input type="email" class="form-control" asp-for="RevaUserMstObj.Email" placeholder="Email" required />
+            <input type="password"
+                   class="form-control"
+                   asp-for="RevaUserMstObj.Password"
+                   placeholder="Password"
+                   required
+                   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\W_]).{8,}"
+                   title="Password must be at least 8 characters long and include an uppercase letter, a lowercase letter, a number, and a special character." />
+
+            <button type="submit" class="btn btn-custom mt-2">Sign Up</button>
+        </form>
+
+        <div class="login-link mt-2">
+            <p>Already have an account? <a href="/Home/Login">Login</a></p>
+        </div>
+    </div>
+</body>
+</html>

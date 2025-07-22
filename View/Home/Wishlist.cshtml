@@ -1,0 +1,138 @@
+@{
+    ViewData["Title"] = "Your Wishlist";
+}
+
+<h1>Your Wishlist</h1>
+
+<div class="wishlist-items">
+    <script>
+        // Get the wishlist from localStorage
+        var wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+        // Check if the wishlist is empty
+        if (wishlist.length === 0) {
+            // Set the content and style for empty wishlist message
+            document.querySelector('.wishlist-items').innerHTML = '<p class="empty-wishlist-message">Your wishlist is empty.</p>';
+        } else {
+            // Loop through each product in the wishlist and display it
+            wishlist.forEach(function (product, index) {
+                var productHTML = `
+                                <div class="wishlist-item">
+                                    <img src="${product.imageUrl}" alt="${product.name}" class="product-image">
+                                    <div class="product-details">
+                                        <p class="product-name">${product.name}</p>
+                                        <p class="product-price">${product.price}</p>
+                                        <button class="btn btn-remove" onclick="removeFromWishlist(${index})">Remove</button>
+                                    </div>
+                                </div>
+                            `;
+                document.querySelector('.wishlist-items').innerHTML += productHTML;
+            });
+        }
+
+        // Function to remove product from wishlist
+        function removeFromWishlist(index) {
+            // Get the wishlist from localStorage
+            var wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+            // Remove the product at the given index
+            wishlist.splice(index, 1);
+
+            // Update the wishlist in localStorage
+            localStorage.setItem("wishlist", JSON.stringify(wishlist));
+
+            // Reload the page to show updated wishlist
+            window.location.reload();
+        }
+    </script>
+</div>
+
+<style>
+    body {
+        background-image: url('https://png.pngtree.com/thumb_back/fh260/background/20240102/pngtree-romantic-wedding-design-with-heart-motifs-balloon-accents-and-wedding-ring-image_13924872.png');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        color: white;
+        font-family: 'Segoe UI', sans-serif;
+        padding: 40px;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 2.5em;
+        color: #ff7bbf;
+        font-weight: bold;
+        margin-bottom: 40px;
+        letter-spacing: 1px;
+    }
+
+    .wishlist-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .wishlist-item {
+        width: 200px;
+        background-color: #f8f8f8;
+        border-radius: 10px;
+        padding: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .product-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .product-details {
+        padding-top: 10px;
+        text-align: center;
+    }
+
+    .product-name {
+        font-weight: bold;
+        margin: 5px 0;
+        color: #333;
+    }
+
+    .product-price {
+        color: #ff7bbf;
+    }
+
+    /* Style for empty wishlist message */
+    .empty-wishlist-message {
+        font-size: 2em;
+        color: #AA336A;
+        background-color: #FFB6C1;
+        padding: 20px;
+        border-radius: 10px;
+        width: 80%;
+        margin: 0 auto;
+        display: inline-block;
+    }
+    /* Style for the Remove button */
+    .btn-remove {
+        background-color: #FF7BBF; /* Pink background */
+        color: white; /* White text */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1em;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        /* Add a hover effect for the Remove button */
+        .btn-remove:hover {
+            background-color: #E54B8B; /* Slightly darker pink */
+        }
+
+        /* Add focus effect for accessibility */
+        .btn-remove:focus {
+            outline: none;
+            box-shadow: 0 0 5px #FF7BBF;
+        }
+</style>

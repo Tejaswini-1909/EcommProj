@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Reva Admin Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            height: 100vh;
+            width: 250px;
+            background-color: #FB6F92;
+            position: fixed;
+            top: 0;
+            left: 0;
+            padding-top: 20px;
+            color: white;
+        }
+
+            .sidebar a {
+                display: block;
+                color: white;
+                padding: 10px 20px;
+                text-decoration: none;
+            }
+
+                .sidebar a:hover {
+                    background-color: #34495e;
+                }
+
+        .main {
+            margin-left: 250px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            min-height: 100vh;
+        }
+
+        #aboutSection, #contactSection {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 30px;
+            border-radius: 6px;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+            border-left: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4 class="text-center">Reva's Admin</h4>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link text-white" href="@Url.Action("Index", "Admin")">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Product" asp-action="Create">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Admin" asp-action="UserInfo">Users</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#">Settings</a>
+            </li>
+            <!-- Logout Link -->
+            <li class="nav-item">
+                <a class="nav-link text-white" asp-controller="Admin" asp-action="Logout">Logout</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#" onclick="showSection('aboutSection')">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="#" onclick="showSection('contactSection')">Contact</a>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Main content -->
+    <div class="main">
+        <h2>@ViewData["Title"]</h2>
+        @RenderBody()  <!-- This will render the content of the page (Dashboard, Logout, etc.) -->
+    </div>
+
+    <!-- Section toggler script -->
+    <script>
+        function showSection(sectionId) {
+            // Hide both sections first
+            document.getElementById('aboutSection') ?.style.setProperty('display', 'none');
+            document.getElementById('contactSection') ?.style.setProperty('display', 'none');
+
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.style.display = 'block';
+                section.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

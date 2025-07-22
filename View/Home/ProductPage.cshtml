@@ -1,0 +1,363 @@
+@{
+    ViewData["Title"] = "Product Page";
+  
+
+}
+<head>
+
+    <!-- Other meta tags, links, and title -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+       
+            // Function to add product to wishlist
+            function addToWishlist(productName, productPrice, productImage) {
+                var product = {
+                    name: productName,
+                    price: productPrice,
+                    imageUrl: productImage
+                };
+
+                var wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
+
+                // Check if the product is already in the wishlist
+                if (!wishlist.some(item => item.name === productName)) {
+                    wishlist.push(product);
+                    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+                    alert(productName + " has been added to your wishlist!");
+                } else {
+                    alert(productName + " is already in your wishlist.");
+                }
+            }
+               // Function to add product to cart
+        function addToCart(productName, productPrice, productImage) {
+            var product = {
+                name: productName,
+                price: productPrice,
+                imageUrl: productImage
+            };
+  // Add to cart
+            var cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.push(product);
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            // Add to wishlist (if not already there)
+            addToWishlist(productName, productPrice, productImage);
+
+            // Redirect to the Cart page
+            window.location.href = '@Url.Action("Cart", "Home")';
+        }
+
+    </script>
+
+
+</head>
+<!-- View Wishlist and View Cart buttons positioned at the top-right -->
+<div class="top-buttons">
+    <a href="@Url.Action("Wishlist", "Home")" class="btn btn-pink">View Wishlist</a>
+    <a href="@Url.Action("Cart", "Home")" class="btn btn-pink">View Cart</a>
+</div>
+
+
+<h1 style="text-align: center; color: #ff7bbf; font-family: 'Segoe UI', sans-serif; font-size: 3em; margin-bottom: 40px;">Our Premium Collection</h1>
+
+<div class="container-fluid">
+    <!-- Watches Category Section -->
+    <div class="row category-section">
+        <div class="col-md-3 category-card-container">
+
+            <div class="category-card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGCs2ilT56QUEeN15xm74M2AphNP_Of2QjZw&s"
+                     alt="Luxury Watch" class="img-responsive center-block category-image" />
+                <p class="category-name">Elegant Watches</p>
+            </div>
+
+        </div>
+
+        <!-- Add Products under Watches -->
+        <div class="col-md-9 product-list-container">
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://www.mvmt.com/dw/image/v2/BDKZ_PRD/on/demandware.static/-/Sites-mgi-master/default/dw3b50cec9/images/products/MF03-G_l_2.jpg?sw=1660&sh=1660" alt="Luxury Watch Front" class="product-image">
+                    <img src="https://www.mvmt.com/dw/image/v2/BDKZ_PRD/on/demandware.static/-/Sites-mgi-master/default/dwccb5b0a0/images/products/MF03-G_l_4.jpg?sw=1660&sh=1660" alt="Luxury Watch Side" class="product-image">
+                    <img src="https://www.mvmt.com/dw/image/v2/BDKZ_PRD/on/demandware.static/-/Sites-mgi-master/default/dw1d50d2dd/images/products/28000360_l_2.jpg?sw=600&sh=600" alt="Luxury Watch Side" class="product-image">
+                </div>
+                <p class="product-name">Luxury Gold Watch</p>
+                <p class="product-price">₹60,199</p>
+                <button class="btn btn-pink" onclick="addToCart('Luxury Gold Watch', '₹60,199', 'https://www.mvmt.com/dw/image/v2/BDKZ_PRD/on/demandware.static/-/Sites-mgi-master/default/dw3b50cec9/images/products/MF03-G_l_2.jpg?sw=1660&sh=1660')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Luxury Gold Watch', '₹60,199', 'https://www.mvmt.com/dw/image/v2/BDKZ_PRD/on/demandware.static/-/Sites-mgi-master/default/dw3b50cec9/images/products/MF03-G_l_2.jpg?sw=1660&sh=1660')">Add to Wishlist</button>
+            </div>
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://www.rosefieldwatches.com/cdn/shop/files/0008454_1200x.jpg?v=1722951242" alt="Silver Watch Front" class="product-image">
+                    <img src="https://www.rosefieldwatches.com/cdn/shop/files/0007487_02e63405-baee-44a7-a726-9d50d02adb74_1200x.jpg?v=1744103900" alt="Silver Watch Side" class="product-image">
+                    <img src="https://ryanthomasjewellers.com/cdn/shop/products/owgss-o63_modelled_grande.jpg?v=1706190619" alt="Silver Watch Side" class="product-image">
+                </div>
+                <p class="product-name">Silver Classic Watch</p>
+                <p class="product-price">₹36,754</p>
+                <button class="btn btn-pink" onclick="addToCart('Silver Classic Watch', '₹36,754', 'https://www.rosefieldwatches.com/cdn/shop/files/0008454_1200x.jpg?v=1722951242')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Silver Classic Watch', '₹36,754','https://www.rosefieldwatches.com/cdn/shop/files/0008454_1200x.jpg?v=1722951242')">Add to Wishlist</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Makeup Category Section -->
+    <div class="row category-section">
+        <div class="col-md-3 category-card-container">
+
+            <div class="category-card">
+                <img src="https://redefinedfeminine.com/wp-content/uploads/2024/10/luxury-cosmetics.webp"
+                     alt="Makeup Essentials" class="img-responsive center-block category-image" />
+                <p class="category-name">Luxury Makeup</p>
+            </div>
+
+        </div>
+
+        <!-- Add Products under Makeup -->
+        <div class="col-md-9 product-list-container">
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://www.getthegloss.com/wp-content/uploads/2024/07/86e8e800-9b37-11ec-af5d-9d314eed0cf6-fenty-7.jpg" alt="Luxury Lipstick Front" class="product-image">
+                    <img src="https://www.harpersbazaararabia.com/wp-content/uploads/sites/7/cloud/2021/09/10/Untitled-design-53-5.png" alt="Luxury Lipstick Side" class="product-image">
+                    <img src="https://images-na.ssl-images-amazon.com/images/I/41MloCnz8RL._UL500_.jpg" alt="Luxury Lipstick Side" class="product-image">
+                </div>
+                <p class="product-name">Luxury Lipstick</p>
+                <p class="product-price">₹3,689</p>
+                <button class="btn btn-pink" onclick="addToCart('Luxury Lipstick', '₹3,689','https://www.getthegloss.com/wp-content/uploads/2024/07/86e8e800-9b37-11ec-af5d-9d314eed0cf6-fenty-7.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Luxury Lipstick', '₹3,689','https://www.getthegloss.com/wp-content/uploads/2024/07/86e8e800-9b37-11ec-af5d-9d314eed0cf6-fenty-7.jpg')">Add to Wishlist</button>
+            </div>
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://us-i.makeupstore.com/s/sn/sn1bcxjeyohw.jpg" alt="Eyeshadow Palette Front" class="product-image">
+                    <img src="https://m.media-amazon.com/images/I/612VnVkrlUL.jpg" alt="Eyeshadow Palette Side" class="product-image">
+                    <img src="https://i.makeup.ie/600x600/r2gi8bjh43ih.jpg" alt="Eyeshadow Palette Side" class="product-image">
+                </div>
+                <p class="product-name">Premium Eyeshadow Palette</p>
+                <p class="product-price">₹4,500</p>
+                <button class="btn btn-pink" onclick="addToCart('Premium Eyeshadow Palette', '₹4,500','https://us-i.makeupstore.com/s/sn/sn1bcxjeyohw.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Premium Eyeshadow Palette', '₹4,500','https://us-i.makeupstore.com/s/sn/sn1bcxjeyohw.jpg')">Add to Wishlist</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fashion Category Section -->
+    <div class="row category-section">
+        <div class="col-md-3 category-card-container">
+
+            <div class="category-card">
+                <img src="https://www.senseorient.com/wp-content/uploads/2022/02/25-Most-Expensive-Clothing-Brands-The-High-End-Fashion-World-1024x683.jpeg"
+                     alt="Fashion Outfit" class="img-responsive center-block category-image" />
+                <p class="category-name">Trendy Fashion</p>
+            </div>
+
+        </div>
+
+        <!-- Add Products under Fashion -->
+        <div class="col-md-9 product-list-container">
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://thumbs.dreamstime.com/b/stylish-black-leather-jacket-top-view-trendy-women-fashionable-design-isolated-white-background-modern-garment-elegant-359007023.jpg" alt="Leather Jacket Front" class="product-image">
+                    <img src="https://www.shutterstock.com/image-photo/happy-young-woman-black-turtleneck-260nw-2044439231.jpg" alt="Leather Jacket Side" class="product-image">
+                    <img src="https://thumbs.dreamstime.com/b/stylish-black-leather-jacket-top-view-trendy-women-fashionable-design-isolated-white-background-modern-garment-elegant-359007023.jpg" alt="Leather Jacket Side" class="product-image">
+                </div>
+                <p class="product-name">Designer Leather Jacket</p>
+                <p class="product-price">₹15,999</p>
+                <button class="btn btn-pink" onclick="addToCart('Designer Leather Jacket', '₹15,999','https://thumbs.dreamstime.com/b/stylish-black-leather-jacket-top-view-trendy-women-fashionable-design-isolated-white-background-modern-garment-elegant-359007023.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Designer Leather Jacket', '₹15,999','https://thumbs.dreamstime.com/b/stylish-black-leather-jacket-top-view-trendy-women-fashionable-design-isolated-white-background-modern-garment-elegant-359007023.jpg')">Add to Wishlist</button>
+            </div>
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://www.shutterstock.com/image-photo/beautiful-young-girl-flying-white-260nw-457951501.jpg" alt="Fairy World Front" class="product-image">
+                    <img src="https://st2.depositphotos.com/1567988/11770/i/950/depositphotos_117704786-stock-photo-beautiful-young-girl-in-flying.jpg" alt="Fairy World Side" class="product-image">
+                    <img src="https://media.istockphoto.com/id/942693582/photo/beautiful-young-girl-in-flying-white-dress-flowing-fabric.jpg?s=612x612&w=0&k=20&c=TpqEM0v6qVWZF40VN9ksL_gIwIqiNLM3gNFoR4IBFZI=" alt="Fairy World Front" class="product-image">
+                </div>
+                <p class="product-name">Fairy World</p>
+                <p class="product-price">₹25,000</p>
+                <button class="btn btn-pink" onclick="addToCart('Fairy World', '₹25,000','https://www.shutterstock.com/image-photo/beautiful-young-girl-flying-white-260nw-457951501.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Fairy World', '₹25,000','https://www.shutterstock.com/image-photo/beautiful-young-girl-flying-white-260nw-457951501.jpg')">Add to Wishlist</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skincare Category Section -->
+    <div class="row category-section">
+        <div class="col-md-3 category-card-container">
+
+            <div class="category-card">
+                <img src="https://www.insignia.com/wp-content/uploads/2024/05/Insignia-skincare-sturm-1024x683.jpg"
+                     alt="Skincare Collection" class="img-responsive center-block category-image" />
+                <p class="category-name">Soft Skincare</p>
+            </div>
+
+        </div>
+
+        <!-- Add Products under Skincare -->
+        <div class="col-md-9 product-list-container">
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://www.shutterstock.com/image-photo/luxurious-antiaging-serum-infused-golden-260nw-2601106103.jpg" alt="Anti-Aging Serum Front" class="product-image">
+                    <img src="https://www.shutterstock.com/image-photo/close-young-pretty-woman-towel-260nw-1868832694.jpg" alt="Anti-Aging Serum Side" class="product-image">
+                    <img src="https://media.istockphoto.com/id/1276652105/photo/young-beautiful-woman-applying-nature-oil-under-eyes.jpg?s=612x612&w=0&k=20&c=n6UbCOmcsQ1_DjdPhyTZ-iemkdhjdhQ7722jWVAVEfQ=" alt="Anti-Aging Serum Side" class="product-image">
+                </div>
+                <p class="product-name">Anti-Aging Serum</p>
+                <p class="product-price">₹6,167</p>
+                <button class="btn btn-pink" onclick="addToCart('Anti-Aging Serum', '₹6,167','https://www.shutterstock.com/image-photo/luxurious-antiaging-serum-infused-golden-260nw-2601106103.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Anti-Aging Serum', '₹6,167','https://www.shutterstock.com/image-photo/luxurious-antiaging-serum-infused-golden-260nw-2601106103.jpg')">Add to Wishlist</button>
+            </div>
+            <div class="product-item">
+                <div class="product-images">
+                    <img src="https://img.freepik.com/premium-photo/face-cream-moisturiser-skincare-bodycare-product-pink-background-spa-organic-beauty-cosmetics-natural-skin-care-routine_360074-89988.jpg" alt="Moisturizing Cream Front" class="product-image">
+                    <img src="https://t3.ftcdn.net/jpg/04/22/50/10/360_F_422501065_iKBL7qoOhaXqjxONodvSnGmuuwkt7pbf.jpg" alt="Moisturizing Cream Side" class="product-image">
+                    <img src="https://t3.ftcdn.net/jpg/02/49/77/80/360_F_249778026_Kyfc0EUHmaKE6BwLVaT3f6Oqu8m6eHVp.jpg" alt="Moisturizing Cream Side" class="product-image">
+                </div>
+                <p class="product-name">Moisturizing Cream</p>
+                <p class="product-price">₹4,599</p>
+                <button class="btn btn-pink" onclick="addToCart('Moisturizing Cream', '₹4,599','https://img.freepik.com/premium-photo/face-cream-moisturiser-skincare-bodycare-product-pink-background-spa-organic-beauty-cosmetics-natural-skin-care-routine_360074-89988.jpg')">Add to Cart</button>
+                <button class="btn btn-wishlist" onclick="addToWishlist('Moisturizing Cream', '₹4,599','https://img.freepik.com/premium-photo/face-cream-moisturiser-skincare-bodycare-product-pink-background-spa-organic-beauty-cosmetics-natural-skin-care-routine_360074-89988.jpg')">Add to Wishlist</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* General Styling */
+    body {
+        background-color: #fce4ec;
+        font-family: 'Segoe UI', sans-serif;
+        overflow-y: scroll;
+        background: url('https://img.pikbest.com/wp/202346/pink-pastel-background-colored-business-center-with-3d-rendered-male-and-glasses_9620616.jpg!w700wp')no-repeat center center fixed; /* pastel pink & violet */
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h1 {
+        color: #ff7bbf;
+        font-size: 3em;
+        margin-bottom: 50px;
+        font-weight: bold;
+    }
+    /* Buttons positioned at the top right */
+    .top-buttons {
+        position: absolute;
+        top: 60px; /* Adjust the distance from the top */
+        right: 20px; /* Adjust the distance from the right */
+        display: flex;
+        gap: 20px;
+    }
+
+        .top-buttons a {
+            padding: 10px 20px;
+            font-size: 1.2em;
+            background-color: #ff7bbf;
+            color: white;
+            border-radius: 25px;
+            text-decoration: none;
+        }
+
+    /* Category Cards */
+    .category-card-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    .category-card {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+        border-radius: 50px;
+        background: linear-gradient(145deg, #ff80ab, #ff4081);
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+    }
+
+    .category-image {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        border-radius: 50px;
+    }
+
+    .category-name {
+        font-size: 1.2em;
+        color: #fff;
+        margin-top: 10px;
+        font-weight: bold;
+    }
+
+    /* Product Card Styling */
+    .product-item {
+        padding: 20px;
+        background-color: #FFC0CB;
+        border-radius: 50px;
+        box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1), -5px -5px 15px rgba(255, 255, 255, 0.7);
+        margin-bottom: 30px;
+    }
+
+    .product-name {
+        font-size: 1.4em;
+        font-weight: bold;
+        margin: 15px 0;
+    }
+
+    .product-price {
+        color: #ff7bbf;
+        font-size: 1.2em;
+    }
+
+    /* Buttons Styling (Pill Shape) */
+    .btn-pink {
+        background-color: #ff7bbf;
+        color: white;
+        border: none;
+        padding: 10px 25px;
+        margin-top: 10px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+
+    .btn-wishlist {
+        background-color: #fff;
+        color: #ff7bbf;
+        border: 2px solid #ff7bbf;
+        padding: 10px 25px;
+        margin-top: 10px;
+        font-size: 1em;
+        cursor: pointer;
+        border-radius: 25px;
+    }
+
+    /* Product Images Scroll */
+    .product-images {
+        display: flex;
+        overflow-x: auto;
+        gap: 10px;
+        justify-content: start;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 250px;
+        height: auto;
+        object-fit: contain;
+        border-radius: 15px;
+    }
+
+
+    /* Horizontal Scrollbar Styling */
+    .product-images::-webkit-scrollbar {
+        height: 8px; /* Horizontal scrollbar height */
+    }
+
+    .product-images::-webkit-scrollbar-thumb {
+        background-color: #ff80ab; /* Light pink */
+        border-radius: 10px; /* Rounded edges */
+    }
+
+        .product-images::-webkit-scrollbar-thumb:hover {
+            background-color: #ff4d84; /* Darker pink when hovered */
+        }
+</style>

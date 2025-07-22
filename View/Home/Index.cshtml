@@ -1,0 +1,216 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<style>
+    html, body {
+        height: 100%;
+        background-color: #ffe6f0; /* Light pastel color */
+        margin: 0;
+    }
+    .scrollable-bar::-webkit-scrollbar {
+        width: 10px; /* Adjust the width of the scrollbar */
+        height: 10px; /* If you want to change the horizontal scrollbar */
+    }
+
+    .scrollable-bar::-webkit-scrollbar-thumb {
+        background-color: #ff66b2; /* Change this to your desired color */
+        border-radius: 10px;
+    }
+
+    .scrollable-bar::-webkit-scrollbar-track {
+        background-color: #f4c2c2; /* A light color for the track (you can change it to any pastel shade) */
+        border-radius: 10px;
+    }
+
+    /* For Firefox */
+    .scrollable-bar {
+        scrollbar-width: thin;
+        scrollbar-color: #ff007f #f4c2c2; /* thumb and track colors */
+    }
+</style>
+<body>
+    <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color: #fff0f5;">
+                    <h5 class="modal-title" id="aboutModalLabel" style="color: #ff007f;">About REVA</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="color: #a1005d;">
+                    <em>
+                        REVA is a luxury fashion house that stands for elegance, uniqueness, and sophistication.
+                        Our collection features premium fabrics, handcrafted items, and modern trends curated for today's stylish woman.
+                    </em>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="contactModal" tabindex="-1" role="dialog" aria-labelledby="contactModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content" style="border-radius: 15px;">
+                <div class="modal-header" style="background-color: #ffe6f0;">
+                    <h5 class="modal-title" id="contactModalLabel" style="color: #ff007f;">Contact Us</h5>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body" style="color: #a1005d;">
+                    <p><strong>Email:</strong> support@reva.com</p>
+                    <p><strong>Phone:</strong> +91 98765 43210</p>
+                    <p><strong>Address:</strong> REVA Fashion House, MG Road, Bengaluru</p>
+                    <p>Available: Mon–Fri, 10 AM to 6 PM</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Hero Section with background image -->
+    <div style="background: url('https://assets.vogue.com/photos/5e13709c141d9c0008bb1c84/master/w_1600%2Cc_limit/VO0220_Cover.jpg') no-repeat center center;
+            background-size: cover;
+            padding: 100px 0;
+            text-align: center;
+            color: #ff007f;
+            font-family: 'Segoe UI', sans-serif;">
+        <div style="background-color: rgba(255, 255, 255, 0.75); padding: 50px; display: inline-block; border-radius: 20px;">
+            <h1 style="font-size: 4em; font-style: italic; font-weight: bold;">REVA</h1>
+            <h3 style="font-size: 1.7em; font-style: italic;">Style your Way</h3>
+            <p style="max-width: 600px; margin: 30px auto; font-size: 1.1em; color: #a1005d;">
+                <em> Discover luxury fashion designed to express your elegance and individuality.</em>
+            </p>
+
+            <!-- Shop Now Button -->
+            <a href="/Home/ProductPage" class="btn btn-lg" style="background-color: #ff007f; color: white; border-radius: 30px; padding: 12px 30px; font-size: 1em;">
+                Shop Now
+            </a>
+
+         
+        </div>
+    </div>
+
+
+
+
+    <!-- Features Section: Luxury Styled -->
+    <div class="row" style="margin-top: 80px; padding: 40px 0; background: #ffe6f0; border-radius: 20px; box-shadow: 0 8px 20px rgba(255, 0, 127, 0.1);">
+        <div class="col-md-4 text-center">
+            <div style="padding: 20px;">
+                <img src="https://img.freepik.com/premium-photo/minimal-brand-template-with-blank-paper-sheets-dried-grass-soft-sunlight-shadows-gold-silk_1233889-7921.jpg" alt="Premium Fabric"
+                     style="height: 60px; margin-bottom: 20px;" />
+                <h3 style="font-style: italic; color: #ff007f;">Premium Fabric</h3>
+                <p style="color: #a1005d;">Only the finest textures and high-quality materials, handpicked for elegance.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div style="padding: 20px;">
+                <img src="https://img.freepik.com/free-vector/four-labels-about-crafts-black-background_23-2147567056.jpg" alt="Handcrafted"
+                     style="height: 60px; margin-bottom: 20px;" />
+                <h3 style="font-style: italic; color: #ff007f;">Handcrafted Elegance</h3>
+                <p style="color: #a1005d;">Each piece designed with passion and precision, tailored for you.</p>
+            </div>
+        </div>
+        <div class="col-md-4 text-center">
+            <div style="padding: 20px;">
+                <img src="https://image.made-in-china.com/202f0j00RsQcpIGqHboA/Printed-Poly-Delivery-Mailing-Bags-Design-Express-Post-Package-Bag-Courier-Polymailer.webp" alt="Fast Delivery"
+                     style="height: 60px; margin-bottom: 20px;" />
+                <h3 style="font-style: italic; color: #ff007f;">Free Express Delivery</h3>
+                <p style="color: #a1005d;">Luxury delivered to your doorstep—quick, safe, and free of charge.</p>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Product Categories -->
+    <div class="row text-center" style="margin-top: 60px;">
+        <div class="col-md-3">
+            <a href="/Home/ProductPage">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQGCs2ilT56QUEeN15xm74M2AphNP_Of2QjZw&s"
+                     alt="Luxury Watch" class="img-responsive center-block"
+                     style="width: 100%; max-width: 250px; height: 200px; object-fit: cover; border-radius: 12px;" />
+                <p style="color: #ff007f; font-style: italic; margin-top: 10px;">Elegant Watches</p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Home/ProductPage">
+                <img src="https://redefinedfeminine.com/wp-content/uploads/2024/10/luxury-cosmetics.webp"
+                     alt="Makeup Essentials" class="img-responsive center-block"
+                     style="width: 100%; max-width: 250px; height: 200px; object-fit: cover; border-radius: 12px;" />
+                <p style="color: #ff007f; font-style: italic; margin-top: 10px;">Luxury Makeup</p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Home/ProductPage">
+                <img src="https://www.senseorient.com/wp-content/uploads/2022/02/25-Most-Expensive-Clothing-Brands-The-High-End-Fashion-World-1024x683.jpeg"
+                     alt="Fashion Outfit" class="img-responsive center-block"
+                     style="width: 100%; max-width: 250px; height: 200px; object-fit: cover; border-radius: 12px;" />
+                <p style="color: #ff007f; font-style: italic; margin-top: 10px;">Trendy Fashion</p>
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a href="/Home/ProductPage">
+                <img src="https://www.insignia.com/wp-content/uploads/2024/05/Insignia-skincare-sturm-1024x683.jpg"
+                     alt="Skincare Collection" class="img-responsive center-block"
+                     style="width: 100%; max-width: 250px; height: 200px; object-fit: cover; border-radius: 12px;" />
+                <p style="color: #ff007f; font-style: italic; margin-top: 10px;">Soft Skincare</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scrollable Image Bar with Prices -->
+    <div class="scrollable-bar" style="overflow-x: auto; white-space: nowrap; padding: 30px 0; margin-top: 60px;">
+
+       
+            <div style="display: inline-block; margin: 0 10px; text-align: center;">
+                <img src="https://product-images-cdn.liketoknow.it/PmV5DC3KSmq7lxUrn.PE6L98gm6ht9KqWVupymPbhbPU31FiVT2PIyg.vqKPwTv0tLMBkXFuiSMKgBjPwOM6WlPaUeNT72M8qblOsvbxgEXmYcbxkHYv1TRVDvnf9.5B5iXdk1zj6eKDBjQqx8luiE8xCFQndlnCX0kN5w4Z6mh0xipEfDK9WhwMewY-?v=0&auto=format&fm=webp&w=450&q=80&dpr=2.625"
+                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 10px;" />
+                <p style="margin-top: 10px; font-weight: bold;">₹8,999</p>
+            </div>
+        
+
+        
+            <div style="display: inline-block; margin: 0 10px; text-align: center;">
+                <img src="https://i.pinimg.com/236x/1e/54/75/1e5475385e9aff4a796b1c52167d4a05.jpg"
+                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 10px;" />
+                <p style="margin-top: 10px; font-weight: bold;">₹6,200</p>
+            </div>
+        
+
+       
+            <div style="display: inline-block; margin: 0 10px; text-align: center;">
+                <img src="https://i.pinimg.com/736x/70/cc/33/70cc33ea17fd0f1180823322581847f6.jpg"
+                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 10px;" />
+                <p style="margin-top: 10px; font-weight: bold;">₹12,999</p>
+            </div>
+        
+
+      
+            <div style="display: inline-block; margin: 0 10px; text-align: center;">
+                <img src="https://i.pinimg.com/736x/22/3d/5c/223d5cf43b877885b38e8cdbbb85cc9b.jpg"
+                     style="height: 200px; width: 300px; object-fit: cover; border-radius: 10px;" />
+                <p style="margin-top: 10px; font-weight: bold;">₹8,999</p>
+            </div>
+
+    </div>
+
+</body>
+
+
+
+
+
+
+
+
+
+<!-- Optional CSS Enhancements -->
+<style>
+    .carousel-inner > .item > img {
+        max-height: 500px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    img:hover {
+        transform: scale(1.03);
+        transition: transform 0.3s ease;
+    }
+</style>

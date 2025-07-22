@@ -1,0 +1,107 @@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Use the shared layout
+    ViewData["Title"] = "Privacy Settings"; // Set page title
+}
+
+<div class="main">
+    <h2>Privacy Settings</h2>
+
+    <div class="card pastel-card ivory">
+        <div class="card-body">
+            <h4>Privacy Policy</h4>
+            <p>
+                By using our service, you agree to our terms and privacy policy. We are committed to protecting your privacy and ensuring that your personal information is secure.
+            </p>
+            <p>
+                Our privacy policy explains how we collect, use, and protect your personal information. Please read it carefully. By continuing to use our service, you are providing your consent to our policy.
+            </p>
+            <p>
+                For more information, please refer to the full Privacy Policy condition below:<br />
+                <b>1. Information Collection</b><br />
+                We collect personal information that you provide directly, such as your name, email address, and any other data you submit through forms, purchases, or sign-ups.<br />
+
+                <b>2. Types of Information Collected</b> <br />
+                We may collect both personal and non-personal data. Personal data includes names, addresses, emails, etc., while non-personal data may include browser type, IP address, and usage statistics.<br />
+
+                <b>3. How We Use Your Information</b><br />
+                We may use your information to respond to your inquiries, process transactions, send promotional materials, or improve our services.<br />
+
+                <b>  4. Cookies and Tracking Technologies</b> <br />
+                We use cookies to enhance your user experience. Cookies help us understand how users interact with our site and improve content and advertising.<br />
+
+                <b>  5. Third-Party Services</b><br />
+                Our website may use third-party services (such as Google Analytics or payment processors). These services may have access to your data, but we do not control their use of it.<br />
+
+                <b>6. Data Sharing and Disclosure</b><br />
+                We do not sell, rent, or trade your personal information to third parties. We may share information with trusted service providers only when necessary to deliver services or comply with legal obligations.<br />
+
+                <b> 7.  Security of Your Data</b>  <br />
+                We implement reasonable security measures to protect your personal data. However, no data transmission method is 100% secure, and we cannot guarantee the absolute security of your data.<br />
+
+                <b> 8. Your Data Protection Rights</b> <br />
+                Depending on your location, you may have the right to access, correct, or delete your personal information. You can also request that we stop processing your data or withdraw consent.<br />
+
+                <b> 9.  Links to Other Websites</b><br />
+                Our website may contain links to external websites. We are not responsible for the privacy practices of these sites and encourage you to review their privacy policies.<br />
+
+                <b>10.  Changes to the Privacy Policy</b> <br />
+                We reserve the right to modify this Privacy Policy at any time. When changes occur, we will update the “last modified” date at the bottom of this page and notify users accordingly.<br />
+
+
+            </p>
+
+            <!-- Privacy Agreement Form -->
+            <form method="post" action="@Url.Action("SubmitPrivacy", "Home")">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="agreeCheckbox" name="agree" required>
+                    <label class="form-check-label" for="agreeCheckbox">
+                        I have read and agree to the Privacy Policy.
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
+
+            <!-- Display Success Message After Agreement -->
+            @if (ViewData["Agreed"] != null && (bool)ViewData["Agreed"])
+            {
+                <div class="alert alert-success mt-4" role="alert">
+                    Thank you! You have successfully agreed to the privacy policy.
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Styling for Privacy Settings Page */
+    .main {
+        background-color: #F3E4F8; /* Light lavender background */
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card {
+        background-color: #FFF9F9; /* Soft white background for the card */
+        border-radius: 8px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    .card-body {
+        padding: 20px;
+    }
+
+    h4 {
+        color: #FB6F92; /* Pastel pink header */
+    }
+
+    .form-check-label {
+        font-size: 1.1rem;
+        color: #333;
+    }
+
+    .alert-success {
+        background-color: #D4EDDA;
+        color: #155724;
+    }
+</style>

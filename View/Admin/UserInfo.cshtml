@@ -1,0 +1,255 @@
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";  // Using the Admin layout
+    ViewData["Title"] = "User Info";  // Title for the page
+}
+
+<style>
+    /* Sidebar Styling */
+    .sidebar {
+        background-color: #FB6F92; /* Pastel pink */
+        padding: 20px;
+        color: white;
+        height: 100vh; /* Full viewport height */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        display: flex;
+        flex-direction: column;
+    }
+
+        .sidebar h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+        }
+
+        .sidebar a {
+            color: white;
+            font-size: 1.1rem;
+            text-decoration: none;
+            margin: 10px 0;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+            .sidebar a:hover {
+                background-color: rgba(255, 255, 255, 0.2);
+            }
+
+    /* Main Content Styling */
+    .main {
+        margin-left: 270px; /* Leave space for the sidebar */
+        padding: 20px;
+        background-image: url('https://marketplace.canva.com/EAGOXiKLMVA/1/0/800w/canva-pink-and-white-watercolor-illustration-pattern-desktop-wallpaper-RFUb5Zx6iEU.jpg'); /* Add the background image here */
+        background-size: cover;
+        background-position: center;
+        min-height: 100vh;
+        color: #333;
+    }
+
+    /* Card Style for User Info */
+    .user-info-card {
+        background-color: rgba(255, 255, 255, 0.8); /* White with transparency */
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        padding: 25px;
+        margin: 15px 0;
+    }
+
+        .user-info-card h4 {
+            color: #FB6F92; /* Accent color */
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .user-info-card table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .user-info-card th, .user-info-card td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .user-info-card th {
+            background-color: #FB6F92;
+            color: white;
+        }
+
+        .user-info-card tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+    /* Button for Adding New Users */
+    .add-user-btn {
+        background-color: #FB6F92;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
+        .add-user-btn:hover {
+            background-color: #f4a7c7;
+        }
+
+    h2 {
+        color: #FB6F92;
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+    /* Pastel Colors for the Modal */
+    .modal-content {
+        background-color: #F8D3D5; /* Pastel pink background */
+        border-radius: 8px;
+    }
+
+    .modal-header {
+        background-color: #FB6F92; /* Pastel pink header */
+        color: white;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+
+    .modal-body {
+        background-color: #F9E6EC; /* Soft pastel pink */
+    }
+
+        .modal-body input, .modal-body select {
+            background-color: #FFFFFF; /* White input fields */
+            border: 1px solid #FB6F92; /* Light pink border */
+            color: #FB6F92; /* Pink text */
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 15px;
+            width: 100%;
+        }
+
+            .modal-body input:focus, .modal-body select:focus {
+                border-color: #F8A7C4; /* Darker pink border on focus */
+                outline: none;
+            }
+
+    .btn-primary {
+        background-color: #FB6F92; /* Pastel pink button */
+        color: white;
+        border: none;
+        border-radius: 4px;
+        padding: 10px 20px;
+    }
+
+        .btn-primary:hover {
+            background-color: #F4A7C7; /* Lighter pastel pink */
+        }
+    /* Hover effect for the Delete button */
+    .add-user-btn.delete-btn {
+        background-color: #ff6f61; /* Initial color */
+    }
+
+        .add-user-btn.delete-btn:hover {
+            background-color: #e04e42; /* Darker red for hover */
+            cursor: pointer; /* Change the cursor to a pointer */
+            transform: scale(1.05); /* Slightly enlarge the button on hover */
+            transition: all 0.3s ease-in-out; /* Smooth transition for the hover effect */
+        }
+</style>
+
+<div class="sidebar">
+    <h3>Admin Dashboard</h3>
+    <a href="@Url.Action("Index", "Admin")">Dashboard</a>
+  
+    <a href="@Url.Action("Index","Admin")">PrivacySettings</a>
+    <a href="@Url.Action("Index", "Admin")">Logout</a>
+</div>
+
+<div class="main">
+    <h2>User Info</h2>
+
+    <!-- Button to add more users -->
+    <!-- Button to add new users -->
+    <button class="add-user-btn" data-bs-toggle="modal" data-bs-target="#addUserModal">Add New User</button>
+
+    <div class="user-info-card">
+        <h4>Users List</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Joined</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Rits</td>
+                    <td>rits123@gmail.com</td>
+                    <td>Admin</td>
+                    <td>July 2025</td>
+                    <td>
+                        <button class="add-user-btn">Edit</button>
+                        <button class="add-user-btn delete-btn">Delete</button>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>John Doe</td>
+                    <td>john.doe@example.com</td>
+                    <td>Editor</td>
+                    <td>June 2024</td>
+                    <td>
+                        <button class="add-user-btn">Edit</button>
+                        <button class="add-user-btn delete-btn">Delete</button>
+
+                    </td>
+                </tr>
+                <!-- More users can be added here -->
+                <!-- Modal for Adding New User -->
+                <div class="modal fade" id="addUserModal" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="addUserModalLabel">Add New User</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Form for Adding New User -->
+                                <form>
+                                    <div class="mb-3">
+                                        <label for="userFullName" class="form-label">Full Name</label>
+                                        <input type="text" class="form-control" id="userFullName" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="userEmail" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="userRole" class="form-label">Role</label>
+                                        <select class="form-select" id="userRole" required>
+                                            <option value="Admin">Admin</option>
+                                            <option value="Editor">Editor</option>
+                                            <option value="Viewer">Viewer</option>
+                                        </select>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Add User</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </tbody>
+        </table>
+    </div>
+</div>
+<!-- Bootstrap JS and dependencies (you may already have this included in your layout file) -->
+<script src=" https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"></script>
